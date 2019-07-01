@@ -42,7 +42,13 @@ const gameOver = false
 
 function create() {
   const scene: Phaser.Scene = this
-  const c = scene.add.circle(200, 200, 80, 0x6666ff)
+  const ball = scene.add.circle(200, 200, 20, 0x6666ff)
+  const floor = scene.add.rectangle(400, 800, 600, 20, 0x6666ff)
+
+  const b = scene.physics.add.staticGroup()
+  b.add(floor)
+  scene.physics.add.existing(ball)
+  scene.physics.add.collider(ball, floor)
   // const circle = new Phaser.GameObjects.Shape(scene, 'star')
   // scene.add.image(400, 300, 'sky')
   // const circle = new Phaser.GameObjects.Shape(scene, 'star')
@@ -59,15 +65,13 @@ function create() {
   // platforms.create(50, 250, 'ground')
   // platforms.create(750, 220, 'ground')
 
-  scene.physics.add.sprite(300, 450, 'dude')
-  scene.physics.add.existing(c)
+  // scene.physics.add.sprite(300, 450, 'dude')
   // player = this.physics.add.sprite(300, 450, 'dude')
 
   // const scene: Phaser.Scene = this
   // const player2 = new Phaser.GameObjects.Sprite(scene, 200, 450, 'dude')
   // const circle = new Phaser.GameObjects.Shape(scene, 'star')
   // player.setBounce(0.2)
-  // // player.setCollideWorldBounds(true)
   // this.physics.add.collider(player, platforms)
 
   // this.anims.create({
