@@ -10,7 +10,7 @@ console.log(box)
 World.add(world, [box])
 Engine.run(engine)
 
-const app = new PIXI.Application({ width: 256, height: 256 })
+const app = new PIXI.Application({ width: 800, height: 600 })
 
 // Add the canvas that Pixi automatically created for you to the HTML document
 document.body.appendChild(app.view)
@@ -23,6 +23,13 @@ circle.x = 64
 circle.y = 130
 app.stage.addChild(circle)
 
+const loader = new PIXI.Loader()
+loader.load(() => {
+  app.ticker.add(delta => gameLoop(delta))
+})
+function gameLoop(delta) {
+  console.log('bar')
+}
 // const canvasH = 1000
 // const canvasW = 800
 
