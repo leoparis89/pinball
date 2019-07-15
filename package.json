@@ -5,11 +5,13 @@
   "license": "MIT",
   "dependencies": {
     "matter-js": "^0.14.2",
-    "phaser": "^3.17.0"
+    "phaser": "^3.17.0",
+    "pixi.js": "^5.0.4"
   },
   "devDependencies": {
     "@poi/plugin-typescript": "^12.2.1",
     "@types/matter-js": "^0.10.2",
+    "@types/pixi.js": "^4.8.8",
     "@types/poi": "^12.5.0",
     "@types/prettier": "^1.16.4",
     "poi": "^12.6.8",

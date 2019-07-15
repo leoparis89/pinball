@@ -1,36 +1,41 @@
-import * as Matter from 'matter-js'
+import * as PIXI from 'pixi.js'
+const app = new PIXI.Application({ width: 256, height: 256 })
 
-const { Engine, Render, World, Bodies } = Matter
+// Add the canvas that Pixi automatically created for you to the HTML document
+document.body.appendChild(app.view)
+// import * as Matter from 'matter-js'
 
-const canvasH = 1000
-const canvasW = 800
+// const { Engine, Render, World, Bodies } = Matter
 
-// create an engine
-const engine = Engine.create()
+// const canvasH = 1000
+// const canvasW = 800
 
-// create a renderer
-const render = Render.create({
-  element: document.body,
-  engine,
-  options: {
-    height: canvasH,
-    width: canvasW,
-    // wireframes: false,
-  },
-})
+// // create an engine
+// const engine = Engine.create()
 
-// Ground
-const groundW = 20
-const ground = Bodies.rectangle(
-  canvasW / 2,
-  canvasH - groundW / 2,
-  canvasW,
-  groundW,
-  { isStatic: true },
-)
+// // create a renderer
+// const render = Render.create({
+//   element: document.body,
+//   engine,
+//   options: {
+//     height: canvasH,
+//     width: canvasW,
+//     // wireframes: false,
+//   },
+// })
 
-// Walls
-const wallW = 20
+// // Ground
+// const groundW = 20
+// const ground = Bodies.rectangle(
+//   canvasW / 2,
+//   canvasH - groundW / 2,
+//   canvasW,
+//   groundW,
+//   { isStatic: true },
+// )
+
+// // Walls
+// const wallW = 20
 // const leftWall = Bodies.rectangle(wallW / 2, canvasH / 2, wallW, canvasH, {
 //   isStatic: true,
 // })
@@ -43,12 +48,12 @@ const wallW = 20
 // )
 
 // Spikes
-const step = 80
-const spikeH = 90
-const spikeW = 10
-const spikes = []
+// const step = 80
+// const spikeH = 90
+// const spikeW = 10
+// const spikes = []
 
-const leftWall = Bodies.rectangle(10, 30, 50, 30)
+// const leftWall = Bodies.rectangle(10, 30, 50, 30)
 // const circle = Bodies.circle()
 // for (let i = step; i < canvasW; i += step) {
 //   console.log(i)
@@ -63,10 +68,10 @@ const leftWall = Bodies.rectangle(10, 30, 50, 30)
 //   )
 // }
 
-World.add(engine.world, [ground, leftWall])
+// World.add(engine.world, [ground, leftWall])
 
 // run the engine
-Engine.run(engine)
+// Engine.run(engine)
 
-// run the renderer
-Render.run(render)
+// // run the renderer
+// Render.run(render)
