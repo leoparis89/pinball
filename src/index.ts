@@ -5,11 +5,12 @@ const { Engine, Render, World, Bodies } = Matter
 
 const engine = Engine.create()
 const world = engine.world
-const box = Bodies.rectangle(50, 50, 80, 80)
-console.log(box)
-World.add(world, [box])
+// const box = Bodies.rectangle(50, 50, 80, 80)
+// console.log(box)
+// World.add(world, [box])
 Engine.run(engine)
 
+const Boxes: any[] = []
 const app = new PIXI.Application({ width: 800, height: 600 })
 
 // Add the canvas that Pixi automatically created for you to the HTML document
@@ -111,10 +112,38 @@ class MyBox {
 // // run the renderer
 // Render.run(render)
 
-const bar = new MyBox(30, 30, 50, 50)
+// const bar = new MyBox(30, 30, 50, 50)
+
+// Boxes.push(bar)
 
 function gameLoop(delta) {
   // circle.x = box.position.x
   // circle.y = box.position.y
-  bar.show()
+  Boxes.forEach(b => b.show())
 }
+
+// window.onclick = e => {
+//   const newB = new MyBox(0, 0, 30, 30)
+//   Boxes.push(newB)
+// }
+
+// window.document.querySelector('canvas').addEventListener('onClick', e => {
+//   debugger
+// })
+
+window.document.querySelector('canvas')!.addEventListener('click', e => {
+  // const newB = new MyBox(390, 200, 30, 30)
+  // Boxes.push(newB)
+
+  app.stage.addChild(makeImage(e.x, e.y))
+})
+
+const makeImage = (x, y) => {
+  const image = new PIXI.Graphics()
+  image.beginFill(0x9966ff)
+  image.drawRect(x, y, 40, 40)
+  image.endFill()
+  return image
+}
+
+console.log(window.document.querySelector('canvas'))
