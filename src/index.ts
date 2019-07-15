@@ -3,6 +3,14 @@ const app = new PIXI.Application({ width: 256, height: 256 })
 
 // Add the canvas that Pixi automatically created for you to the HTML document
 document.body.appendChild(app.view)
+
+const circle = new PIXI.Graphics()
+circle.beginFill(0x9966ff)
+circle.drawCircle(0, 0, 32)
+circle.endFill()
+circle.x = 64
+circle.y = 130
+app.stage.addChild(circle)
 // import * as Matter from 'matter-js'
 
 // const { Engine, Render, World, Bodies } = Matter
