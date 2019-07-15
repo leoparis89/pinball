@@ -5,7 +5,7 @@ const { Engine, Render, World, Bodies } = Matter
 
 const engine = Engine.create()
 const world = engine.world
-const box = Bodies.rectangle(400, 200, 80, 80)
+const box = Bodies.rectangle(50, 50, 80, 80)
 console.log(box)
 World.add(world, [box])
 Engine.run(engine)
@@ -17,10 +17,8 @@ document.body.appendChild(app.view)
 
 const circle = new PIXI.Graphics()
 circle.beginFill(0x9966ff)
-circle.drawRect(0, 0, 32, 40)
+circle.drawRect(50, 50, 80, 80)
 circle.endFill()
-circle.x = 64
-circle.y = 130
 app.stage.addChild(circle)
 
 const loader = new PIXI.Loader()
@@ -29,6 +27,8 @@ loader.load(() => {
 })
 function gameLoop(delta) {
   console.log('bar')
+  circle.x = box.position.x
+  circle.y = box.position.y
 }
 // const canvasH = 1000
 // const canvasW = 800
