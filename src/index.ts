@@ -1,4 +1,15 @@
 import * as PIXI from 'pixi.js'
+
+import * as Matter from 'matter-js'
+const { Engine, Render, World, Bodies } = Matter
+
+const engine = Engine.create()
+const world = engine.world
+const box = Bodies.rectangle(400, 200, 80, 80)
+console.log(box)
+World.add(world, [box])
+Engine.run(engine)
+
 const app = new PIXI.Application({ width: 256, height: 256 })
 
 // Add the canvas that Pixi automatically created for you to the HTML document
@@ -6,20 +17,14 @@ document.body.appendChild(app.view)
 
 const circle = new PIXI.Graphics()
 circle.beginFill(0x9966ff)
-circle.drawCircle(0, 0, 32)
+circle.drawRect(0, 0, 32, 40)
 circle.endFill()
 circle.x = 64
 circle.y = 130
 app.stage.addChild(circle)
-// import * as Matter from 'matter-js'
-
-// const { Engine, Render, World, Bodies } = Matter
 
 // const canvasH = 1000
 // const canvasW = 800
-
-// // create an engine
-// const engine = Engine.create()
 
 // // create a renderer
 // const render = Render.create({
