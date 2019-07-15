@@ -15,21 +15,36 @@ const app = new PIXI.Application({ width: 800, height: 600 })
 // Add the canvas that Pixi automatically created for you to the HTML document
 document.body.appendChild(app.view)
 
-const circle = new PIXI.Graphics()
-circle.beginFill(0x9966ff)
-circle.drawRect(50, 50, 80, 80)
-circle.endFill()
-app.stage.addChild(circle)
+// const circle = new PIXI.Graphics()
+// circle.beginFill(0x9966ff)
+// circle.drawRect(50, 50, 80, 80)
+// circle.endFill()
+// app.stage.addChild(circle)
 
 const loader = new PIXI.Loader()
 loader.load(() => {
   app.ticker.add(delta => gameLoop(delta))
 })
-function gameLoop(delta) {
-  console.log('bar')
-  circle.x = box.position.x
-  circle.y = box.position.y
+
+class MyBox {
+  body
+  image
+  constructor(x, y, w, h) {
+    this.body = Bodies.rectangle(x, y, w, h)
+    World.add(world, this.body)
+    this.image = new PIXI.Graphics()
+    this.image.beginFill(0x9966ff)
+    this.image.drawRect(x, y, w, h)
+    this.image.endFill()
+    app.stage.addChild(this.image)
+  }
+
+  show() {
+    this.image.x = this.body.position.x
+    this.image.y = this.body.position.y
+  }
 }
+
 // const canvasH = 1000
 // const canvasW = 800
 
@@ -95,3 +110,11 @@ function gameLoop(delta) {
 
 // // run the renderer
 // Render.run(render)
+
+const bar = new MyBox(30, 30, 50, 50)
+
+function gameLoop(delta) {
+  // circle.x = box.position.x
+  // circle.y = box.position.y
+  bar.show()
+}
