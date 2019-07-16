@@ -155,14 +155,6 @@ function gameLoop(delta) {
   Boxes.forEach(b => b.refresh())
 }
 
-// window.onclick = e => {
-//   const newB = new MyBox(0, 0, 30, 30)
-//   Boxes.push(newB) // }
-
-// window.document.querySelector('canvas').addEventListener('onClick', e => {
-//   debugger
-// })
-
 window.document.querySelector('canvas')!.addEventListener('click', e => {
   // const newB = new MyBox(390, 200, 30, 30)
   // Boxes.push(newB)
@@ -180,13 +172,12 @@ const makeImage = (x, y) => {
   return image
 }
 
-//     this.body = Bodies.rectangle(x, y, w, h)
-//     World.add(world, this.body)
 const makeBody = (x, y) => {
   const body = Bodies.rectangle(0, 0, 40, 40)
   World.add(world, body)
   return body
 }
+
 class Box {
   image
   body
@@ -196,11 +187,7 @@ class Box {
     this.body = makeBody(x, y)
   }
   refresh() {
-    // this.image.y++
     this.image.x = this.body.position.x
-    // console.log('image ' + this.image.x)
     this.image.y = this.body.position.y
   }
 }
-
-// console.log(window.document.querySelector('canvas'))
