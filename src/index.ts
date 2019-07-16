@@ -11,8 +11,11 @@ const world = engine.world
 // World.add(world, [box])
 Engine.run(engine)
 
+const HEIGHT = 600
+const WIDTH = 800
+
 const Boxes: any[] = []
-const app = new PIXI.Application({ width: 800, height: 600 })
+const app = new PIXI.Application({ width: WIDTH, height: HEIGHT })
 
 // Add the canvas that Pixi automatically created for you to the HTML document
 document.body.appendChild(app.view)
@@ -32,22 +35,29 @@ loader
 
 loader.load(() => {
   app.ticker.add(delta => gameLoop(delta))
-  const cat = new PIXI.Sprite(loader.resources['assets/cat.png'].texture)
-  cat.x = 96
-  cat.y = 96
+  // const cat = new PIXI.Sprite(loader.resources['assets/cat.png'].texture)
+  // cat.x = 96
+  // cat.y = 96
 
-  const rectangle = new PIXI.Graphics()
-  rectangle.lineStyle(4, 0xff3300, 1)
-  rectangle.beginFill(0x66ccff)
-  rectangle.drawRect(0, 0, 64, 64)
-  rectangle.endFill()
-  rectangle.x = 170
-  rectangle.y = 170
-  app.stage.addChild(rectangle)
-  // Add the cat to the stage
-  app.stage.addChild(cat)
+  // const rectangle = new PIXI.Graphics()
+  // rectangle.lineStyle(4, 0xff3300, 1)
+  // rectangle.beginFill(0x66ccff)
+  // rectangle.drawRect(0, 0, 64, 64)
+  // rectangle.endFill()
+  // rectangle.x = 170
+  // rectangle.y = 170j
+  // app.stage.addChild(rectangle)
+  // // Add the cat to the stage
+  // app.stage.addChild(cat)
   // cat.visible = false
   console.log(app)
+  // makeImage(0, 500, 800, 30)
+  // makeBody(0, 500, 800, 30, true)
+
+  const ground = Bodies.rectangle(WIDTH / 2, HEIGHT - 25, WIDTH, 50, {
+    isStatic: true,
+  })
+  World.add(world, ground)
 })
 
 function loadProgressHandler(loader, resource) {
@@ -56,100 +66,7 @@ function loadProgressHandler(loader, resource) {
 
   // Display the percentage of files currently loaded
   console.log('progress: ' + loader.progress + '%')
-
-  // If you gave your files names as the first argument
-  // of the `add` method, you can access them like this
-  // console.log("loading: " + resource.name);
 }
-
-// class MyBox {
-//   body
-//   image
-//   constructor(x, y, w, h) {
-//     this.body = Bodies.rectangle(x, y, w, h)
-//     World.add(world, this.body)
-//     this.image = new PIXI.Graphics()
-//     this.image.beginFill(0x9966ff)
-//     this.image.drawRect(x, y, w, h)
-//     this.image.endFill()
-//     app.stage.addChild(this.image)
-//   }
-
-//   show() {
-//     this.image.x = this.body.position.x
-//     this.image.y = this.body.position.y
-//   }
-// }
-
-// const canvasH = 1000
-// const canvasW = 800
-
-// // create a renderer
-// const render = Render.create({
-//   element: document.body,
-//   engine,
-//   options: {
-//     height: canvasH,
-//     width: canvasW,
-//     // wireframes: false,
-//   },
-// })
-
-// // Ground
-// const groundW = 20
-// const ground = Bodies.rectangle(
-//   canvasW / 2,
-//   canvasH - groundW / 2,
-//   canvasW,
-//   groundW,
-//   { isStatic: true },
-// )
-
-// // Walls
-// const wallW = 20
-// const leftWall = Bodies.rectangle(wallW / 2, canvasH / 2, wallW, canvasH, {
-//   isStatic: true,
-// })
-// const rightWall = Bodies.rectangle(
-//   canvasW - wallW / 2,
-//   canvasH / 2,
-//   wallW,
-//   canvasH,
-//   { isStatic: true },
-// )
-
-// Spikes
-// const step = 80
-// const spikeH = 90
-// const spikeW = 10
-// const spikes = []
-
-// const leftWall = Bodies.rectangle(10, 30, 50, 30)
-// const circle = Bodies.circle()
-// for (let i = step; i < canvasW; i += step) {
-//   console.log(i)
-//   spikes.push(
-//     Bodies.rectangle(
-//       i - spikeW / 2,
-//       canvasH - spikeH / 2 - groundW,
-//       spikeW,
-//       spikeH,
-//       { isStatic: true },
-//     ),
-//   )
-// }
-
-// World.add(engine.world, [ground, leftWall])
-
-// run the engine
-// Engine.run(engine)
-
-// // run the renderer
-// Render.run(render)
-
-// const bar = new MyBox(30, 30, 50, 50)
-
-// Boxes.push(bar)
 
 function gameLoop(delta) {
   Boxes.forEach(b => b.refresh())
@@ -165,15 +82,15 @@ window.document.querySelector('canvas')!.addEventListener('click', e => {
 const makeImage = (x, y, h, w) => {
   const image = new PIXI.Graphics()
   image.beginFill(0x9966ff)
-  image.drawRect(x, y, h, w)
+  image.drawRect(0, 0, h, w)
   image.endFill()
   // const image = new PIXI.Sprite(loader.resources['assets/cat.png'].texture)
   app.stage.addChild(image)
   return image
 }
 
-const makeBody = (x, y, h, w) => {
-  const body = Bodies.rectangle(0, 0, h, w)
+const makeBody = (x, y, h, w, isStatic?) => {
+  const body = Bodies.rectangle(x, y, h, w, { isStatic })
   World.add(world, body)
   return body
 }
