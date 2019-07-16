@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js'
 
 import * as Matter from 'matter-js'
+import { debug } from 'webpack'
 const { Engine, Render, World, Bodies } = Matter
 
 const engine = Engine.create({})
@@ -165,7 +166,7 @@ function gameLoop(delta) {
 window.document.querySelector('canvas')!.addEventListener('click', e => {
   // const newB = new MyBox(390, 200, 30, 30)
   // Boxes.push(newB)
-  Boxes.push(new Box(e.x, e.y))
+  Boxes.push(new Box(e.offsetX, e.offsetY))
   // app.stage.addChild(makeImage(e.x, e.y))
 })
 
@@ -195,8 +196,6 @@ class Box {
     this.body = makeBody(x, y)
   }
   refresh() {
-    this.image.x++
-    console.log(this.image.x)
     // this.image.y++
     this.image.x = this.body.position.x
     // console.log('image ' + this.image.x)
@@ -204,4 +203,4 @@ class Box {
   }
 }
 
-console.log(window.document.querySelector('canvas'))
+// console.log(window.document.querySelector('canvas'))
