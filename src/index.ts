@@ -158,22 +158,22 @@ function gameLoop(delta) {
 window.document.querySelector('canvas')!.addEventListener('click', e => {
   // const newB = new MyBox(390, 200, 30, 30)
   // Boxes.push(newB)
-  Boxes.push(new Box(e.offsetX, e.offsetY))
+  Boxes.push(new Box(e.offsetX, e.offsetY, 60, 60))
   // app.stage.addChild(makeImage(e.x, e.y))
 })
 
-const makeImage = (x, y) => {
+const makeImage = (x, y, h, w) => {
   const image = new PIXI.Graphics()
   image.beginFill(0x9966ff)
-  image.drawRect(x, y, 40, 40)
+  image.drawRect(x, y, h, w)
   image.endFill()
   // const image = new PIXI.Sprite(loader.resources['assets/cat.png'].texture)
   app.stage.addChild(image)
   return image
 }
 
-const makeBody = (x, y) => {
-  const body = Bodies.rectangle(0, 0, 40, 40)
+const makeBody = (x, y, h, w) => {
+  const body = Bodies.rectangle(0, 0, h, w)
   World.add(world, body)
   return body
 }
@@ -182,9 +182,9 @@ class Box {
   image
   body
 
-  constructor(x, y) {
-    this.image = makeImage(x, y)
-    this.body = makeBody(x, y)
+  constructor(x, y, h, w) {
+    this.image = makeImage(x, y, h, w)
+    this.body = makeBody(x, y, h, w)
   }
   refresh() {
     this.image.x = this.body.position.x
