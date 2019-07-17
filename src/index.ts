@@ -1,6 +1,7 @@
 import './matterService'
 import './pixiService'
 
+import { loader } from './pixiService'
 // import * as Matter from 'matter-js'
 
 // const { Engine, Render, World, Bodies } = Matter
@@ -41,15 +42,6 @@ import './pixiService'
 // //   .add(['assets/aquaBall.png', 'assets/bomb.png', 'assets/cat.png'])
 // //   .on('progress', loadProgressHandler)
 // // .load(setup)
-
-// loader.load(() => {
-//   // app.ticker.add(delta => gameLoop(delta))
-//   // console.log(app)
-//   // const ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 20, {
-//   //   isStatic: true,
-//   // })
-//   // World.add(world, ground)
-// })
 
 // // function gameLoop(delta) {
 // //   Boxes.forEach(b => b.refresh())
