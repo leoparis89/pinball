@@ -8,10 +8,11 @@ const app = new PIXI.Application({
   height: settings.screenH,
 })
 
+document.getElementById('pixi-frame')!.appendChild(app.view)
+
 function createPixiFrame() {
   const pixiFrame = document.createElement('div')
   pixiFrame.id = 'pixi-frame'
   pixiFrame.style.position = 'fixed'
-  pixiFrame.innerText = 'bar'
   document.body.appendChild(pixiFrame)
 }

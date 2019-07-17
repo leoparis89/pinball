@@ -1,4 +1,5 @@
 import './matterService'
+import './pixiService'
 
 // import * as Matter from 'matter-js'
 
