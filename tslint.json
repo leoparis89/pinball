@@ -10,7 +10,8 @@
     "no-require-imports": false,
     "no-empty": false,
     "no-console": false,
-    "variable-name": false
+    "variable-name": false,
+    "one-variable-per-declaration": false
   },
 
   "linterOptions": {
