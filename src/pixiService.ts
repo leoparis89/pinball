@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js'
+import { gameLoop } from './gameLoop'
 import settings from './settings'
 
 createPixiFrame()
@@ -20,8 +21,7 @@ function createPixiFrame() {
 export const loader = new PIXI.Loader()
 
 loader.load(() => {
-  debugger
-  // app.ticker.add(delta => gameLoop(delta))
+  app.ticker.add(delta => gameLoop(delta))
   // console.log(app)
   // const ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 20, {
   //   isStatic: true,

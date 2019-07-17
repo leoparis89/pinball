@@ -2,6 +2,11 @@ import './matterService'
 import './pixiService'
 
 import { loader } from './pixiService'
+
+// export function gameLoop() {
+//   console.log('bar')
+// }
+// export const foo = 5
 // import * as Matter from 'matter-js'
 
 // const { Engine, Render, World, Bodies } = Matter
