@@ -12,8 +12,8 @@ document.getElementById('pixi-frame')!.appendChild(pixiApp.view)
 
 function createPixiFrame() {
   const pixiFrame = document.createElement('div')
+  pixiFrame.style.display = 'inline-block'
   pixiFrame.id = 'pixi-frame'
-  pixiFrame.style.position = 'fixed'
   document.body.appendChild(pixiFrame)
 }
 

@@ -24,7 +24,8 @@ Render.run(render)
 function createMatterFrame() {
   const matterFrame = document.createElement('div')
   matterFrame.id = 'matter-frame'
-  matterFrame.style.position = 'fixed'
-  matterFrame.style.opacity = '0.5'
+  matterFrame.style.display = 'inline-block'
+  // matterFrame.style.position = 'fixed'
+  // matterFrame.style.opacity = '1'
   document.body.appendChild(matterFrame)
 }

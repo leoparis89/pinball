@@ -3,12 +3,12 @@ import './pixiService'
 // tslint:disable-next-line:ordered-imports
 import './matterService'
 
-const b = new Box(20, 20, 20, 20)
-console.log(b)
-
 export const bodies: any[] = []
-bodies.push(b)
-
+// bodies.push(b)
+document.getElementById('matter-frame')!.addEventListener('click', e => {
+  const b = new Box(e.offsetX, e.offsetY, 30, 30)
+  bodies.push(b)
+})
 // export function gameLoop() {
 //   console.log('bar')
 // }
