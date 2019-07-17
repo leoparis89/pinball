@@ -1,7 +1,12 @@
+import { Box } from './Box'
 import './matterService'
 import './pixiService'
 
-import { loader } from './pixiService'
+const b = new Box(20, 20, 20, 20)
+console.log(b)
+
+export const bodies: any[] = []
+bodies.push(b)
 
 // export function gameLoop() {
 //   console.log('bar')
@@ -59,11 +64,7 @@ import { loader } from './pixiService'
 // //     Boxes.push(new Box(e.offsetX, e.offsetY, 60, 60))
 // //     // app.stage.addChild(makeImage(e.x, e.y))
 // //   })
-
-// const makeImage = (x, y, h, w) => {
-//   const image = new PIXI.Graphics()
-//   image.beginFill(0x9966ff)
-//   image.drawRect(0, 0, h, w)
+// const makeImage = (x, y, h, w) => { //   const image = new PIXI.Graphics() //   image.beginFill(0x9966ff) //   image.drawRect(0, 0, h, w)
 //   image.endFill()
 //   // const image = new PIXI.Sprite(loader.resources['assets/cat.png'].texture)
 //   // app.stage.addChild(image)

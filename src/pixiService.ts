@@ -4,12 +4,11 @@ import settings from './settings'
 
 createPixiFrame()
 
-const app = new PIXI.Application({
+export const pixiApp = new PIXI.Application({
   width: settings.screenW,
   height: settings.screenH,
 })
-
-document.getElementById('pixi-frame')!.appendChild(app.view)
+document.getElementById('pixi-frame')!.appendChild(pixiApp.view)
 
 function createPixiFrame() {
   const pixiFrame = document.createElement('div')
@@ -21,7 +20,7 @@ function createPixiFrame() {
 export const loader = new PIXI.Loader()
 
 loader.load(() => {
-  app.ticker.add(delta => gameLoop(delta))
+  pixiApp.ticker.add(delta => gameLoop(delta))
   // console.log(app)
   // const ground = Bodies.rectangle(WIDTH / 2, HEIGHT, WIDTH, 20, {
   //   isStatic: true,
