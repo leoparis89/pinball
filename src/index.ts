@@ -1,11 +1,5 @@
 import './matterService'
 
-const pixiFrame = document.createElement('div')
-pixiFrame.id = 'pixi-frame'
-pixiFrame.style.position = 'fixed'
-pixiFrame.innerText = 'bar'
-document.body.appendChild(pixiFrame)
-
 // import * as Matter from 'matter-js'
 
 // const { Engine, Render, World, Bodies } = Matter

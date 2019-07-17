@@ -3,9 +3,11 @@ import settings from './settings'
 const { Engine, Render, World, Bodies } = Matter
 
 const engine = Engine.create({})
-const world = engine.world
 
-createFrame()
+export const world = engine.world
+export const bodies: any[] = []
+
+createMatterFrame()
 
 const render = Render.create({
   element: document.getElementById('matter-frame')!,
@@ -19,7 +21,7 @@ const render = Render.create({
 Engine.run(engine)
 Render.run(render)
 
-function createFrame() {
+function createMatterFrame() {
   const matterFrame = document.createElement('div')
   matterFrame.id = 'matter-frame'
   matterFrame.style.position = 'fixed'
