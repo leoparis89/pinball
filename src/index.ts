@@ -1,6 +1,7 @@
 import { Box } from './Box'
-import './matterService'
 import './pixiService'
+// tslint:disable-next-line:ordered-imports
+import './matterService'
 
 const b = new Box(20, 20, 20, 20)
 console.log(b)
