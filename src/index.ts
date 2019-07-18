@@ -17,6 +17,15 @@ const makeFLoor = () => {
   World.add(world, body)
 }
 makeFLoor()
+
+const makePin = () => {
+  const p = Bodies.trapezoid(170, 200, 20, 80, 0.33, {
+    angle: 1.57,
+    isStatic: true,
+  })
+  World.add(world, p)
+}
+makePin()
 // export function gameLoop() {
 
 //   console.log('bar')
