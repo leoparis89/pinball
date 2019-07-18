@@ -25,7 +25,7 @@ const makeImage = input => {
 
   pixiApp.stage.addChild(g)
 
-  return g
+  return g as PIXI.Graphics
 }
 
 export class Box {
@@ -52,5 +52,11 @@ export class Box {
   refresh() {
     this.image.x = this.body.position.x
     this.image.y = this.body.position.y
+    this.image.angle = radToDeg(this.body.angle)
   }
+}
+
+function radToDeg(radians) {
+  const pi = Math.PI
+  return radians * (180 / pi)
 }
