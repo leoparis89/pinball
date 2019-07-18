@@ -1,7 +1,9 @@
+import { Bodies, World } from 'matter-js'
 import { Box } from './Box'
-import './pixiService'
 // tslint:disable-next-line:ordered-imports
 import './matterService'
+import { world } from './matterService'
+import './pixiService'
 
 export const bodies: any[] = []
 // bodies.push(b)
@@ -9,7 +11,14 @@ document.getElementById('matter-frame')!.addEventListener('click', e => {
   const b = new Box(e.offsetX, e.offsetY, 30, 30)
   bodies.push(b)
 })
+
+const makeFLoor = () => {
+  const body = Bodies.rectangle(200, 390, 400, 20, { isStatic: true })
+  World.add(world, body)
+}
+makeFLoor()
 // export function gameLoop() {
+
 //   console.log('bar')
 // }
 // export const foo = 5
