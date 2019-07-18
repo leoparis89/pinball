@@ -1,5 +1,5 @@
 import { Bodies, World } from 'matter-js'
-import { Box } from './Box'
+import { Box, makeImage } from './Box'
 // tslint:disable-next-line:ordered-imports
 import './matterService'
 import { world } from './matterService'
@@ -24,6 +24,17 @@ const makePin = () => {
     isStatic: true,
   })
   World.add(world, p)
+
+  const vert = p.vertices
+  const input = vert
+    .map(({ x, y }) => [x, y])
+    .map(el => [el[0] - el[1]])
+    .reduce((acc, curr) => {
+      acc = [...acc, ...curr]
+      return acc
+    }, [])
+
+  makeImage(input)
 }
 makePin()
 // export function gameLoop() {

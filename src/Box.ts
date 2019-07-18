@@ -9,15 +9,7 @@ const makeBody = (x, y, h, w, isStatic?) => {
   return body
 }
 
-const makeImage = input => {
-  const image = new PIXI.Graphics()
-  // image.beginFill(0x9966ff)
-  // // image.drawRect(0, 0, h, w)
-  const poly = new PIXI.Polygon([4, 5], [49, 79], [49, 88], [33, 99])
-  image.drawPolygon(poly)
-  // debugger
-  image.endFill()
-  // const image = new PIXI.Sprite(loader.resources['assets/cat.png'].texture)
+export const makeImage = input => {
   const g = new PIXI.Graphics()
   g.beginFill(0x9966ff)
     .drawPolygon(input)
