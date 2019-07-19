@@ -1,4 +1,4 @@
-import { Bodies, World } from 'matter-js'
+import { Bodies, Constraint, World } from 'matter-js'
 import { Box, makeImage } from './Box'
 // tslint:disable-next-line:ordered-imports
 import './matterService'
@@ -28,7 +28,7 @@ const makePin = () => {
   const vert = p.vertices
   const input = vert
     .map(({ x, y }) => [x, y])
-    .map(el => [el[0] - el[1]])
+    .map(el => [el[0], el[1]])
     .reduce((acc, curr) => {
       acc = [...acc, ...curr]
       return acc
@@ -37,6 +37,17 @@ const makePin = () => {
   makeImage(input)
 }
 makePin()
+
+const body = Bodies.polygon(30, 150, 5, 30)
+
+const constraint = Constraint.create({
+  pointA: { x: 70, y: 100 },
+  bodyB: body,
+  pointB: { x: 0, y: 0 },
+})
+
+World.add(world, body)
+World.add(world, constraint)
 // export function gameLoop() {
 
 //   console.log('bar')

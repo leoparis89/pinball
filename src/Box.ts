@@ -13,6 +13,7 @@ export const makeImage = input => {
   const g = new PIXI.Graphics()
   g.beginFill(0x9966ff)
     .drawPolygon(input)
+    // .drawEllipse(30, 30, 30, 60)
     .endFill()
 
   pixiApp.stage.addChild(g)
