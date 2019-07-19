@@ -48,6 +48,19 @@ const constraint = Constraint.create({
 
 World.add(world, body)
 World.add(world, constraint)
+const revol = () => {
+  // add revolute constraint
+  const body = Bodies.rectangle(600, 200, 200, 20)
+  const ball = Bodies.circle(550, 150, 20)
+
+  const constraint = Constraint.create({
+    pointA: { x: 600, y: 200 },
+    bodyB: body,
+    length: 0,
+  })
+  World.add(world, [body, ball, constraint])
+}
+revol()
 // export function gameLoop() {
 
 //   console.log('bar')
