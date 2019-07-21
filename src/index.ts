@@ -1,4 +1,5 @@
 import { Bodies, Constraint, World } from 'matter-js'
+import Matter from 'matter-js'
 import { Box, makeImage } from './Box'
 // tslint:disable-next-line:ordered-imports
 import './matterService'
@@ -13,7 +14,7 @@ document.getElementById('matter-frame')!.addEventListener('click', e => {
 })
 
 const makeFLoor = () => {
-  const body = Bodies.rectangle(200, 390, 400, 20, { isStatic: true })
+  const body = Bodies.rectangle(200, 750, 400, 20, { isStatic: true })
   World.add(world, body)
 }
 makeFLoor()
@@ -48,19 +49,50 @@ const constraint = Constraint.create({
 
 World.add(world, body)
 World.add(world, constraint)
-const revol = () => {
-  // add revolute constraint
-  const body = Bodies.rectangle(600, 200, 200, 20)
-  const ball = Bodies.circle(550, 150, 20)
+// const revol = () => {
+//   // add revolute constraint
+//   const body = Bodies.rectangle(600, 200, 200, 20)
+//   const ball = Bodies.circle(550, 150, 20)
 
-  const constraint = Constraint.create({
-    pointA: { x: 600, y: 200 },
-    bodyB: body,
-    length: 0,
+//   const constraint = Constraint.create({
+//     pointA: { x: 600, y: 200 },
+//     bodyB: body,
+//     length: 0,
+//   })
+//   World.add(world, [body, ball, constraint])
+// }
+// revol()
+const makePaddles = () => {
+  console.log('bar')
+  // this group lets paddle pieces overlap each other
+  const paddleGroup = Matter.Body.nextGroup(true)
+
+  // Left paddle mechanism
+  const paddleLeft = {}
+  paddleLeft.paddle = Matter.Bodies.trapezoid(170, 660, 20, 80, 0.33, {
+    label: 'paddleLeft',
+    angle: 1.57,
+    chamfer: {},
+    render: {
+      // fillStyle: COLOR.PADDLE,
+    },
   })
-  World.add(world, [body, ball, constraint])
+
+  paddleLeft.brick = Matter.Bodies.rectangle(172, 672, 40, 80, {
+    angle: 1.62,
+    chamfer: {},
+    render: {
+      visible: false,
+    },
+  })
+
+  // paddleLeft.comp = Matter.Body.create({
+  //   label: 'paddleLeftComp',
+  //   parts: [paddleLeft.paddle, paddleLeft.brick],
+  // })
+  Matter.World.add(world, [paddleLeft.paddle])
 }
-revol()
+makePaddles()
 // export function gameLoop() {
 
 //   console.log('bar')
