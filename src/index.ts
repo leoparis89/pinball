@@ -39,37 +39,40 @@ const makePin = () => {
 }
 makePin()
 
-const body = Bodies.polygon(30, 150, 5, 30)
+// const body = Bodies.polygon(30, 150, 5, 30)
 
-const constraint = Constraint.create({
-  pointA: { x: 70, y: 100 },
-  bodyB: body,
-  pointB: { x: 0, y: 0 },
-})
+// const constraint = Constraint.create({
+//   pointA: { x: 70, y: 100 },
+//   bodyB: body,
+//   pointB: { x: 0, y: 0 },
+// })
 
-World.add(world, body)
-World.add(world, constraint)
-// const revol = () => {
-//   // add revolute constraint
-//   const body = Bodies.rectangle(600, 200, 200, 20)
-//   const ball = Bodies.circle(550, 150, 20)
+// World.add(world, body)
+// World.add(world, constraint)
 
-//   const constraint = Constraint.create({
-//     pointA: { x: 600, y: 200 },
-//     bodyB: body,
-//     length: 0,
-//   })
-//   World.add(world, [body, ball, constraint])
-// }
-// revol()
+const revol = () => {
+  // add revolute constraint
+  const body = Bodies.rectangle(600, 200, 200, 20)
+  // const ball = Bodies.circle(550, 150, 20)
+
+  const constraint = Constraint.create({
+    pointA: { x: 600, y: 200 },
+    bodyB: body,
+    length: 0,
+  })
+  World.add(world, [body, constraint] as any)
+}
+
+revol()
 const makePaddles = () => {
   console.log('bar')
   // this group lets paddle pieces overlap each other
-  const paddleGroup = Matter.Body.nextGroup(true)
+  // const paddleGroup = Matter.Body.nextGroup(true)
 
+  // const paddleGroup = Matter.Body.nextGroup(true)
   // Left paddle mechanism
-  const paddleLeft = {}
-  paddleLeft.paddle = Matter.Bodies.trapezoid(170, 660, 20, 80, 0.33, {
+  const paddleLeft = {} as any
+  paddleLeft.paddle = Matter.Bodies.trapezoid(170, 460, 20, 80, 0.33, {
     label: 'paddleLeft',
     angle: 1.57,
     chamfer: {},
@@ -78,19 +81,56 @@ const makePaddles = () => {
     },
   })
 
-  paddleLeft.brick = Matter.Bodies.rectangle(172, 672, 40, 80, {
-    angle: 1.62,
-    chamfer: {},
+  paddleLeft.hinge = Matter.Bodies.circle(142, 460, 5, {
+    isStatic: true,
     render: {
-      visible: false,
+      visible: true,
     },
   })
+
+  const constraint = Constraint.create({
+    pointA: { x: 170, y: 460 },
+    // bodyA: paddleLeft.hinge,
+    pointB: { x: -25, y: 0 },
+    bodyB: paddleLeft.paddle,
+    // pointB: { x: -30, y: -9 },
+    // bodyB: paddleLeft.hinge,
+    length: 0,
+    stiffness: 0,
+  })
+
+  // paddleLeft.hinge = Matter.Bodies.circle(142, 660, 5, {
+  //   isStatic: true,
+  //   render: {
+  //     visible: true,
+  //   },
+  // })
+
+  // paddleLeft.con = Matter.Constraint.create({
+  //   bodyA: paddleLeft.comp,
+  //   pointA: { x: -29.5, y: -8.5 },
+  //   bodyB: paddleLeft.hinge,
+  //   length: 0,
+  //   stiffness: 0,
+  // })
+
+  Object.values(paddleLeft).forEach(piece => {
+    // piece.collisionFilter.group = paddleGroup
+    console.log(piece)
+  })
+  // paddleLeft.brick = Matter.Bodies.rectangle(172, 372, 40, 80, {
+  //   angle: 1.62,
+  //   chamfer: {},
+  //   render: {
+  //     // visible: false,
+  //   },
+  // })
 
   // paddleLeft.comp = Matter.Body.create({
   //   label: 'paddleLeftComp',
   //   parts: [paddleLeft.paddle, paddleLeft.brick],
   // })
-  Matter.World.add(world, [paddleLeft.paddle])
+  Matter.World.add(world, [paddleLeft.paddle, constraint])
 }
 makePaddles()
 // export function gameLoop() {

@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "matter-attractors": "^0.1.6",
     "matter-js": "^0.14.2",
     "phaser": "^3.17.0",
     "pixi.js": "^5.0.4"

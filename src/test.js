@@ -183,6 +183,7 @@
     Object.values(paddleLeft).forEach(piece => {
       piece.collisionFilter.group = paddleGroup
     })
+
     paddleLeft.con = Matter.Constraint.create({
       bodyA: paddleLeft.comp,
       pointA: { x: -29.5, y: -8.5 },
@@ -214,28 +215,28 @@
       label: 'paddleRightComp',
       parts: [paddleRight.paddle, paddleRight.brick],
     })
-    paddleRight.hinge = Matter.Bodies.circle(308, 660, 5, {
-      isStatic: true,
-      render: {
-        visible: false,
-      },
-    })
-    Object.values(paddleRight).forEach(piece => {
-      piece.collisionFilter.group = paddleGroup
-    })
-    paddleRight.con = Matter.Constraint.create({
-      bodyA: paddleRight.comp,
-      pointA: { x: 29.5, y: -8.5 },
-      bodyB: paddleRight.hinge,
-      length: 0,
-      stiffness: 0,
-    })
+    // paddleRight.hinge = Matter.Bodies.circle(308, 660, 5, {
+    //   isStatic: true,
+    //   render: {
+    //     visible: false,
+    //   },
+    // })
+    // Object.values(paddleRight).forEach(piece => {
+    //   piece.collisionFilter.group = paddleGroup
+    // })
+    // paddleRight.con = Matter.Constraint.create({
+    //   bodyA: paddleRight.comp,
+    //   pointA: { x: 29.5, y: -8.5 },
+    //   bodyB: paddleRight.hinge,
+    //   length: 0,
+    //   stiffness: 0,
+    // })
     Matter.World.add(world, [
       paddleRight.comp,
-      paddleRight.hinge,
-      paddleRight.con,
+      // paddleRight.hinge,
+      // paddleRight.con,
     ])
-    Matter.Body.rotate(paddleRight.comp, -0.57, { x: 308, y: 660 })
+    // Matter.Body.rotate(paddleRight.comp, -0.57, { x: 308, y: 660 })
   }
 
   function createPinball() {

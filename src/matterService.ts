@@ -1,4 +1,5 @@
 import Matter from 'matter-js'
+Matter.use('matter-attractors')
 import settings from './settings'
 const { Engine, Render, World, Bodies } = Matter
 
