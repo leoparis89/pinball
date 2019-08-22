@@ -171,15 +171,39 @@ function stopper(x, y, side, position) {
 }
 
 const makeStopper = () => {
-  const c = Matter.Bodies.circle(230, 591, 40, {
+  const c = Matter.Bodies.circle(160, 591, 40, {
     isStatic: true,
     render: {
       visible: true,
     },
+    plugin: {
+      attractors: [
+        // stopper is always a, other body is b
+        function(bodyA, bodyB) {
+          return {
+            x: (bodyA.position.x - bodyB.position.x) * 0.002,
+            y: (bodyA.position.y - bodyB.position.y) * 0.002,
+          }
+        },
+        // function(a, b) {
+        //   // if (b.label === attracteeLabel) {
+        //   //   const isPaddleUp =
+        //   //     side === 'left' ? isLeftPaddleUp : isRightPaddleUp
+        //   //   const isPullingUp = position === 'up' && isPaddleUp
+        //   //   const isPullingDown = position === 'down' && !isPaddleUp
+        //   //   if (isPullingUp || isPullingDown) {
+        //   //     return {
+        //   //       x: (a.position.x - b.position.x) * PADDLE_PULL,
+        //   //       y: (a.position.y - b.position.y) * PADDLE_PULL,
+        //   //     }
+        //   //   }
+        //   // }
+        // },
+      ],
+    },
     // collisionFilter: {
-    //   // group: stopperGroup,
-    // },
-  })
+    //   // group: stopperGroup, // },
+  } as any)
   Matter.World.add(world, [c])
 }
 
