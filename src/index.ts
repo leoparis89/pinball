@@ -152,7 +152,6 @@ const makePaddles = () => {
   // // })
   // Matter.World.add(world, [paddleLeft.paddle, constraint, stopper])
 }
-makePaddles()
 
 // invisible bodies to constrict paddles
 function stopper(x, y, side, position) {
@@ -208,6 +207,8 @@ const makeStopper = () => {
 }
 
 makeStopper()
+
+makePaddles()
 // export function gameLoop() {
 
 //   console.log('bar')
