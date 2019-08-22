@@ -22,51 +22,6 @@ const makeFLoor = () => {
 
 makeFLoor()
 
-// const makePin = () => {
-//   const p = Bodies.trapezoid(170, 200, 20, 80, 0.33, {
-//     angle: 1.57,
-//     isStatic: true,
-//   })
-//   World.add(world, p)
-
-//   const vert = p.vertices
-//   const input = vert
-//     .map(({ x, y }) => [x, y])
-//     .map(el => [el[0], el[1]])
-//     .reduce((acc, curr) => {
-//       acc = [...acc, ...curr]
-//       return acc
-//     }, [])
-
-//   makeImage(input)
-// }
-// makePin()
-
-// const body = Bodies.polygon(30, 150, 5, 30)
-
-// const constraint = Constraint.create({
-//   pointA: { x: 70, y: 100 },
-//   bodyB: body,
-//   pointB: { x: 0, y: 0 },
-// })
-
-// World.add(world, body)
-// World.add(world, constraint)
-
-// const revol = () => {
-//   // add revolute constraint
-//   const body = Bodies.rectangle(600, 200, 200, 20)
-//   // const ball = Bodies.circle(550, 150, 20)
-
-//   const constraint = Constraint.create({
-//     pointA: { x: 600, y: 200 },
-//     bodyB: body,
-//     length: 0,
-//   })
-//   World.add(world, [body, constraint] as any)
-// }
-
-// revol()
 const makePaddles = () => {
   // this group lets paddle pieces overlap each other
   const paddleGroup = Matter.Body.nextGroup(true)
