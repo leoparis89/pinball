@@ -169,6 +169,21 @@ function stopper(x, y, side, position) {
     // },
   })
 }
+
+const makeStopper = () => {
+  const c = Matter.Bodies.circle(230, 591, 40, {
+    isStatic: true,
+    render: {
+      visible: true,
+    },
+    // collisionFilter: {
+    //   // group: stopperGroup,
+    // },
+  })
+  Matter.World.add(world, [c])
+}
+
+makeStopper()
 // export function gameLoop() {
 
 //   console.log('bar')
