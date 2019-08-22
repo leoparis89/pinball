@@ -1,6 +1,5 @@
 import { Bodies, Constraint, World } from 'matter-js'
 import Matter from 'matter-js'
-import { Box, makeImage } from './Box'
 // tslint:disable-next-line:ordered-imports
 import './matterService'
 import { world } from './matterService'

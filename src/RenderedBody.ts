@@ -1,31 +1,15 @@
-import { Bodies, World } from 'matter-js'
+import { World } from 'matter-js'
 import * as PIXI from 'pixi.js'
 import { world } from './matterService'
 import { pixiApp } from './pixiService'
 
-const makeBody = (x, y, h, w, isStatic?) => {
-  const body = Bodies.rectangle(x, y, 40, 40)
-  World.add(world, body)
-  return body
-}
-
-export const makeImage = input => {
-  const g = new PIXI.Graphics()
-  g.beginFill(0x9966ff)
-    .drawPolygon(input)
-    .endFill()
-
-  pixiApp.stage.addChild(g)
-
-  return g as PIXI.Graphics
-}
-
-export class Box {
+export class RenderedBody {
   image
   body
 
-  constructor(x, y, h, w, isStatic?) {
-    this.body = makeBody(x, y, h, w, isStatic)
+  constructor(x, y, body) {
+    World.add(world, body)
+    this.body = body
 
     const xOffset = x,
       yOffset = y
@@ -47,6 +31,17 @@ export class Box {
     this.image.y = this.body.position.y
     this.image.angle = radToDeg(this.body.angle)
   }
+}
+
+export const makeImage = input => {
+  const g = new PIXI.Graphics()
+  g.beginFill(0x9966ff)
+    .drawPolygon(input)
+    .endFill()
+
+  pixiApp.stage.addChild(g)
+
+  return g as PIXI.Graphics
 }
 
 function radToDeg(radians) {
