@@ -5,18 +5,22 @@ import { Box, makeImage } from './Box'
 import './matterService'
 import { world } from './matterService'
 import './pixiService'
+import { RenderedBody } from './RenderedBody'
 
 export const bodies: any[] = []
 // bodies.push(b)
 document.getElementById('matter-frame')!.addEventListener('click', e => {
-  const b = new Box(e.offsetX, e.offsetY, 30, 30)
-  bodies.push(b)
+  // const b = new Box(e.offsetX, e.offsetY, 30, 30)
+  const box = Bodies.circle(e.offsetX, e.offsetY, 40)
+  const final = new RenderedBody(e.offsetX, e.offsetY, box)
+  bodies.push(final)
 })
 
 const makeFLoor = () => {
   const body = Bodies.rectangle(200, 750, 400, 20, { isStatic: true })
   World.add(world, body)
 }
+
 makeFLoor()
 
 // const makePin = () => {
@@ -86,10 +90,12 @@ const makePaddles = () => {
       visible: false,
     },
   })
+
   paddleLeft.comp = Matter.Body.create({
     label: 'paddleLeftComp',
     parts: [paddleLeft.paddle, paddleLeft.brick],
   })
+
   paddleLeft.hinge = Matter.Bodies.circle(142, 660, 5, {
     isStatic: true,
     render: {
