@@ -7,7 +7,7 @@ import './pixiService'
 interface IPaddle {
   paddle
   hinge
-  con
+  constraint
 }
 
 export const makePaddles = () => {
@@ -47,7 +47,7 @@ export const makePaddles = () => {
   const paddleLeft: IPaddle = {
     paddle,
     hinge,
-    con: constraint,
+    constraint,
   }
 
   // paddleLeft.con = Matter.Constraint.create({
@@ -57,7 +57,11 @@ export const makePaddles = () => {
   //   length: 0,
   //   stiffness: 0,
   // })
-  Matter.World.add(world, [paddleLeft.paddle, paddleLeft.hinge, paddleLeft.con])
+  Matter.World.add(world, [
+    paddleLeft.paddle,
+    paddleLeft.hinge,
+    paddleLeft.constraint,
+  ])
   // Matter.Body.rotate(paddleLeft.comp, 0.57, { x: 142, y: 660 })
   // // this group lets paddle pieces overlap each other
   // // const paddleGroup = Matter.Body.nextGroup(true)
