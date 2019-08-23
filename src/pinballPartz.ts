@@ -4,13 +4,20 @@ import './matterService'
 import { world } from './matterService'
 import './pixiService'
 
+interface IPaddle {
+  paddle
+  hinge
+  con
+}
+
 export const makePaddles = () => {
   // this group lets paddle pieces overlap each other
   const paddleGroup = Matter.Body.nextGroup(true)
 
   // Left paddle mechanism
-  const paddleLeft = {} as any
-  paddleLeft.paddle = Matter.Bodies.trapezoid(170, 660, 20, 80, 0.33, {
+  //   const paddleLeft: IPaddle = {}
+
+  const paddle = Matter.Bodies.trapezoid(170, 660, 20, 80, 0.33, {
     label: 'paddleLeft',
     angle: 1.57,
     chamfer: {},
@@ -19,33 +26,25 @@ export const makePaddles = () => {
     },
   })
 
-  paddleLeft.brick = Matter.Bodies.rectangle(172, 672, 40, 80, {
-    angle: 1.62,
-    chamfer: {},
-    render: {
-      visible: false,
-    },
-  })
-
-  paddleLeft.comp = Matter.Body.create({
-    label: 'paddleLeftComp',
-    parts: [paddleLeft.paddle, paddleLeft.brick],
-  })
-
-  paddleLeft.hinge = Matter.Bodies.circle(142, 660, 5, {
+  const hinge = Matter.Bodies.circle(142, 660, 5, {
     isStatic: true,
     render: {
       // visible: false,
     },
   })
 
+  const paddleLeft = {
+    paddle,
+    hinge,
+  }
+
   Object.values(paddleLeft).forEach((piece: any) => {
     piece.collisionFilter.group = paddleGroup
   })
 
   paddleLeft.con = Matter.Constraint.create({
-    bodyA: paddleLeft.comp,
-    pointA: { x: -29.5, y: -8.5 },
+    bodyA: paddleLeft.paddle,
+    pointA: { x: -15, y: 0 },
     bodyB: paddleLeft.hinge,
     length: 0,
     stiffness: 0,
@@ -57,7 +56,7 @@ export const makePaddles = () => {
   //   length: 0,
   //   stiffness: 0,
   // })
-  Matter.World.add(world, [paddleLeft.comp, paddleLeft.hinge, paddleLeft.con])
+  Matter.World.add(world, [paddleLeft.paddle, paddleLeft.hinge, paddleLeft.con])
   // Matter.Body.rotate(paddleLeft.comp, 0.57, { x: 142, y: 660 })
   // // this group lets paddle pieces overlap each other
   // // const paddleGroup = Matter.Body.nextGroup(true)
