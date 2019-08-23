@@ -14,13 +14,13 @@ export const makePaddles = () => {
   // this group lets paddle pieces overlap each other
   const paddleGroup = Matter.Body.nextGroup(true)
 
-  // Left paddle mechanism
-  //   const paddleLeft: IPaddle = {}
-
   const paddle = Matter.Bodies.trapezoid(170, 660, 20, 80, 0.33, {
     label: 'paddleLeft',
     angle: 1.57,
     chamfer: {},
+    collisionFilter: {
+      group: paddleGroup,
+    } as any,
     render: {
       // fillStyle: COLOR.PADDLE,
     },
@@ -28,28 +28,28 @@ export const makePaddles = () => {
 
   const hinge = Matter.Bodies.circle(142, 660, 5, {
     isStatic: true,
+    collisionFilter: {
+      group: paddleGroup,
+    } as any,
     render: {
       // visible: false,
     },
   })
 
-  const paddleLeft: IPaddle = {
-    paddle,
-    hinge,
-    con: null,
-  }
-
-  Object.values(paddleLeft).forEach((piece: any) => {
-    piece.collisionFilter.group = paddleGroup
-  })
-
-  paddleLeft.con = Matter.Constraint.create({
-    bodyA: paddleLeft.paddle,
+  const constraint = Matter.Constraint.create({
+    bodyA: paddle,
     pointA: { x: -15, y: 0 },
-    bodyB: paddleLeft.hinge,
+    bodyB: hinge,
     length: 0,
     stiffness: 0,
   })
+
+  const paddleLeft: IPaddle = {
+    paddle,
+    hinge,
+    con: constraint,
+  }
+
   // paddleLeft.con = Matter.Constraint.create({
   //   bodyA: paddleLeft.comp,
   //   pointA: { x: -29.5, y: -8.5 },
