@@ -23,6 +23,7 @@ makeFLoor()
 
 // makeStopper()
 
+makeStopper(180, 640, false)
+makeStopper(180, 560, true)
+
 makePaddles(150, 600)
-makeStopper(180, 640)
-makeStopper(180, 560)

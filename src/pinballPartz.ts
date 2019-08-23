@@ -139,7 +139,23 @@ export const makePaddles = (x: number, y: number) => {
   // Matter.World.add(world, [paddleLeft.paddle, constraint, stopper])
 }
 
-export const makeStopper = (x: number, y: number) => {
+let isUp = false
+
+document.onkeydown = e => {
+  if (e.code === 'Space') {
+    isUp = true
+    console.log(isUp)
+  }
+}
+
+document.onkeyup = e => {
+  if (e.code === 'Space') {
+    isUp = false
+    console.log(isUp)
+  }
+}
+
+export const makeStopper = (x: number, y: number, active) => {
   const c = Matter.Bodies.circle(x, y, 10, {
     isStatic: true,
     render: {
@@ -149,8 +165,12 @@ export const makeStopper = (x: number, y: number) => {
       attractors: [
         (bodyA, bodyB) => {
           return {
-            x: (bodyA.position.x - bodyB.position.x) * 0.0,
-            y: (bodyA.position.y - bodyB.position.y) * 0.0,
+            x:
+              (bodyA.position.x - bodyB.position.x) *
+              (active && isUp ? 0.002 : 0.0),
+            y:
+              (bodyA.position.y - bodyB.position.y) *
+              (active && isUp ? 0.002 : 0.0),
           }
         },
       ],
