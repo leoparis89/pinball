@@ -1,8 +1,8 @@
-import Matter, { Bodies, World } from 'matter-js'
+import { Bodies, World } from 'matter-js'
 // tslint:disable-next-line:ordered-imports
 import './matterService'
 import { world } from './matterService'
-import { makePaddles } from './pinballPartz'
+import { makePaddles, makeStopper } from './pinballPartz'
 import './pixiService'
 import { RenderedBody } from './RenderedBody'
 export const bodies: any[] = []
@@ -20,43 +20,6 @@ const makeFLoor = () => {
 }
 
 makeFLoor()
-
-const makeStopper = () => {
-  const c = Matter.Bodies.circle(160, 591, 40, {
-    isStatic: true,
-    render: {
-      visible: true,
-    },
-    plugin: {
-      attractors: [
-        // stopper is always a, other body is b
-        function(bodyA, bodyB) {
-          return {
-            x: (bodyA.position.x - bodyB.position.x) * 0.002,
-            y: (bodyA.position.y - bodyB.position.y) * 0.002,
-          }
-        },
-        // function(a, b) {
-        //   // if (b.label === attracteeLabel) {
-        //   //   const isPaddleUp =
-        //   //     side === 'left' ? isLeftPaddleUp : isRightPaddleUp
-        //   //   const isPullingUp = position === 'up' && isPaddleUp
-        //   //   const isPullingDown = position === 'down' && !isPaddleUp
-        //   //   if (isPullingUp || isPullingDown) {
-        //   //     return {
-        //   //       x: (a.position.x - b.position.x) * PADDLE_PULL,
-        //   //       y: (a.position.y - b.position.y) * PADDLE_PULL,
-        //   //     }
-        //   //   }
-        //   // }
-        // },
-      ],
-    },
-    // collisionFilter: {
-    //   // group: stopperGroup, // },
-  } as any)
-  Matter.World.add(world, [c])
-}
 
 makeStopper()
 
