@@ -164,6 +164,10 @@ export const makeStopper = (x: number, y: number, active) => {
     plugin: {
       attractors: [
         (bodyA, bodyB) => {
+          if (bodyB.label !== 'paddleLeft') {
+            return
+          }
+
           return {
             x:
               (bodyA.position.x - bodyB.position.x) *
