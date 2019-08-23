@@ -140,7 +140,7 @@ export const makePaddles = () => {
 }
 
 export const makeStopper = () => {
-  const c = Matter.Bodies.circle(160, 591, 40, {
+  const c = Matter.Bodies.circle(110, 591, 40, {
     isStatic: true,
     render: {
       visible: true,
