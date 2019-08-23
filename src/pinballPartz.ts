@@ -33,9 +33,10 @@ export const makePaddles = () => {
     },
   })
 
-  const paddleLeft = {
+  const paddleLeft: IPaddle = {
     paddle,
     hinge,
+    con: null,
   }
 
   Object.values(paddleLeft).forEach((piece: any) => {

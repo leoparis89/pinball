@@ -6,19 +6,18 @@
   "dependencies": {
     "matter-attractors": "^0.1.6",
     "matter-js": "^0.14.2",
-    "pixi.js": "^5.0.4"
+    "pixi.js": "^5.1.1"
   },
   "devDependencies": {
     "@poi/plugin-typescript": "^12.2.1",
     "@types/matter-js": "^0.10.2",
-    "@types/pixi.js": "^4.8.8",
     "@types/poi": "^12.5.0",
-    "@types/prettier": "^1.16.4",
-    "poi": "^12.6.8",
-    "prettier": "^1.17.1",
-    "tslint": "^5.16.0",
+    "@types/prettier": "^1.18.2",
+    "poi": "^12.7.2",
+    "prettier": "^1.18.2",
+    "tslint": "^5.19.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "dev": "yarn poi --serve src/index.ts"
