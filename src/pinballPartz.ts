@@ -10,11 +10,11 @@ interface IPaddle {
   constraint
 }
 
-export const makePaddles = () => {
+export const makePaddles = (x: number, y: number) => {
   // this group lets paddle pieces overlap each other
   const paddleGroup = Matter.Body.nextGroup(true)
 
-  const paddle = Matter.Bodies.trapezoid(170, 660, 20, 80, 0.33, {
+  const paddle = Matter.Bodies.trapezoid(x, y, 20, 80, 0.33, {
     label: 'paddleLeft',
     angle: 1.57,
     chamfer: {},
@@ -26,7 +26,7 @@ export const makePaddles = () => {
     },
   })
 
-  const hinge = Matter.Bodies.circle(142, 660, 5, {
+  const hinge = Matter.Bodies.circle(x, y, 5, {
     isStatic: true,
     collisionFilter: {
       group: paddleGroup,
@@ -139,35 +139,20 @@ export const makePaddles = () => {
   // Matter.World.add(world, [paddleLeft.paddle, constraint, stopper])
 }
 
-export const makeStopper = () => {
-  const c = Matter.Bodies.circle(110, 591, 40, {
+export const makeStopper = (x: number, y: number) => {
+  const c = Matter.Bodies.circle(x, y, 10, {
     isStatic: true,
     render: {
       visible: true,
     },
     plugin: {
       attractors: [
-        // stopper is always a, other body is b
-        function(bodyA, bodyB) {
+        (bodyA, bodyB) => {
           return {
-            x: (bodyA.position.x - bodyB.position.x) * 0.002,
-            y: (bodyA.position.y - bodyB.position.y) * 0.002,
+            x: (bodyA.position.x - bodyB.position.x) * 0.0,
+            y: (bodyA.position.y - bodyB.position.y) * 0.0,
           }
         },
-        // function(a, b) {
-        //   // if (b.label === attracteeLabel) {
-        //   //   const isPaddleUp =
-        //   //     side === 'left' ? isLeftPaddleUp : isRightPaddleUp
-        //   //   const isPullingUp = position === 'up' && isPaddleUp
-        //   //   const isPullingDown = position === 'down' && !isPaddleUp
-        //   //   if (isPullingUp || isPullingDown) {
-        //   //     return {
-        //   //       x: (a.position.x - b.position.x) * PADDLE_PULL,
-        //   //       y: (a.position.y - b.position.y) * PADDLE_PULL,
-        //   //     }
-        //   //   }
-        //   // }
-        // },
       ],
     },
     // collisionFilter: {

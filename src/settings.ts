@@ -1,4 +1,4 @@
 export default {
-  screenH: 768,
-  screenW: 1024,
+  screenH: 1024,
+  screenW: 768,
 }

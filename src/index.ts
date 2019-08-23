@@ -21,6 +21,8 @@ const makeFLoor = () => {
 
 makeFLoor()
 
-makeStopper()
+// makeStopper()
 
-makePaddles()
+makePaddles(150, 600)
+makeStopper(180, 640)
+makeStopper(180, 560)
