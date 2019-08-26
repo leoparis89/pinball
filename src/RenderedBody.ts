@@ -28,7 +28,7 @@ export class RenderedBody {
   refresh() {
     this.image.x = this.body.position.x
     this.image.y = this.body.position.y
-    this.image.angle = radToDeg(this.body.angle)
+    this.image.angle = radToDeg(this.body.angle) - 90
   }
 }
 

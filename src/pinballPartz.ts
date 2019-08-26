@@ -3,6 +3,7 @@ import Matter from 'matter-js'
 import './matterService'
 import { world } from './matterService'
 import './pixiService'
+import { renderBody } from './RenderedBody'
 
 interface IPaddle {
   paddle
@@ -26,6 +27,7 @@ export const makePaddles = (x: number, y: number) => {
     },
   })
 
+  renderBody(paddle)
   const hinge = Matter.Bodies.circle(x, y, 5, {
     isStatic: true,
     collisionFilter: {
@@ -51,7 +53,7 @@ export const makePaddles = (x: number, y: number) => {
   }
 
   Matter.World.add(world, [
-    paddleLeft.paddle,
+    // paddleLeft.paddle,
     paddleLeft.hinge,
     paddleLeft.constraint,
   ])
