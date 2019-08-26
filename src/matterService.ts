@@ -31,3 +31,7 @@ function createMatterFrame() {
   // matterFrame.style.opacity = '1'
   document.body.appendChild(matterFrame)
 }
+
+export function addToWorld(body) {
+  World.add(world, body)
+}

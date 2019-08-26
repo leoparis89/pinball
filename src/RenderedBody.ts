@@ -1,14 +1,12 @@
-import { World } from 'matter-js'
-import * as PIXI from 'pixi.js'
-import { world } from './matterService'
-import { pixiApp } from './pixiService'
+import { addToWorld } from './matterService'
+import { makeImage } from './pixiService'
 
 export class RenderedBody {
   image
   body
 
   constructor(x, y, body) {
-    World.add(world, body)
+    addToWorld(body)
     this.body = body
 
     const xOffset = x,
@@ -31,17 +29,6 @@ export class RenderedBody {
     this.image.y = this.body.position.y
     this.image.angle = radToDeg(this.body.angle)
   }
-}
-
-export const makeImage = input => {
-  const g = new PIXI.Graphics()
-  g.beginFill(0x9966ff)
-    .drawPolygon(input)
-    .endFill()
-
-  pixiApp.stage.addChild(g)
-
-  return g as PIXI.Graphics
 }
 
 function radToDeg(radians) {

@@ -27,3 +27,14 @@ loader.load(() => {
   // })
   // World.add(world, ground)
 })
+
+export const makeImage = input => {
+  const g = new PIXI.Graphics()
+  g.beginFill(0x9966ff)
+    .drawPolygon(input)
+    .endFill()
+
+  pixiApp.stage.addChild(g)
+
+  return g as PIXI.Graphics
+}
