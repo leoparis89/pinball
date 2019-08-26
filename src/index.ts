@@ -6,6 +6,7 @@ import { world } from './matterService'
 import { makePaddles, makeStopper } from './pinballPartz'
 import './pixiService'
 import { renderBody, RenderedBody } from './RenderedBody'
+import settings from './settings'
 
 document.getElementById('matter-frame')!.addEventListener('click', e => {
   // const b = new Box(e.offsetX, e.offsetY, 30, 30)
@@ -22,7 +23,11 @@ makeFLoor()
 
 // makeStopper()
 
-makeStopper(180, 640, false)
-makeStopper(180, 560, true)
+const paddleDist = 150
+makeStopper(paddleDist + 30, 640, false)
+makeStopper(paddleDist + 30, 560, true)
+makePaddles(paddleDist, 600)
 
-makePaddles(150, 600)
+makeStopper(settings.screenW - paddleDist - 30, 640, false)
+makeStopper(settings.screenW - paddleDist - 30, 560, true)
+makePaddles(settings.screenW - paddleDist, 600)
