@@ -11,12 +11,12 @@ interface IPaddle {
   constraint
 }
 
-export const makePaddles = (x: number, y: number) => {
+export const makePaddles = (x: number, y: number, rightSide?: boolean) => {
   // this group lets paddle pieces overlap each other
   const paddleGroup = Matter.Body.nextGroup(true)
 
   const paddle = Matter.Bodies.trapezoid(x, y, 20, 80, 0.33, {
-    label: 'paddleLeft',
+    label: 'paddle' + (rightSide ? 'Right' : 'Left'),
     angle: 1.57,
     chamfer: {},
     collisionFilter: {
@@ -28,6 +28,7 @@ export const makePaddles = (x: number, y: number) => {
   })
 
   renderBody(paddle)
+
   const hinge = Matter.Bodies.circle(x, y, 5, {
     isStatic: true,
     collisionFilter: {
@@ -75,7 +76,12 @@ document.onkeyup = e => {
   }
 }
 
-export const makeStopper = (x: number, y: number, active) => {
+export const makeStopper = (
+  x: number,
+  y: number,
+  active,
+  rightSide?: boolean,
+) => {
   const c = Matter.Bodies.circle(x, y, 10, {
     isStatic: true,
     render: {
@@ -84,7 +90,7 @@ export const makeStopper = (x: number, y: number, active) => {
     plugin: {
       attractors: [
         (bodyA, bodyB) => {
-          if (bodyB.label !== 'paddleLeft') {
+          if (bodyB.label !== 'paddle' + (rightSide ? 'Right' : 'Left')) {
             return
           }
 
