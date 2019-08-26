@@ -1,3 +1,4 @@
+import { bodies } from './gameLoop'
 import { addToWorld } from './matterService'
 import { makeImage } from './pixiService'
 
@@ -34,4 +35,8 @@ export class RenderedBody {
 function radToDeg(radians) {
   const pi = Math.PI
   return radians * (180 / pi)
+}
+
+export const renderBody = body => {
+  bodies.push(new RenderedBody(body.position.x, body.position.y, body))
 }

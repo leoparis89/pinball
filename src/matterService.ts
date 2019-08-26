@@ -7,7 +7,6 @@ const { Engine, Render, World, Bodies } = Matter
 const engine = Engine.create({})
 
 export const world = engine.world
-export const bodies: any[] = []
 
 createMatterFrame()
 

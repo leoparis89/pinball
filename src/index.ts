@@ -1,17 +1,16 @@
 import { Bodies, World } from 'matter-js'
+import { bodies } from './gameLoop'
 // tslint:disable-next-line:ordered-imports
 import './matterService'
 import { world } from './matterService'
 import { makePaddles, makeStopper } from './pinballPartz'
 import './pixiService'
-import { RenderedBody } from './RenderedBody'
-export const bodies: any[] = []
+import { renderBody, RenderedBody } from './RenderedBody'
 
 document.getElementById('matter-frame')!.addEventListener('click', e => {
   // const b = new Box(e.offsetX, e.offsetY, 30, 30)
   const box = Bodies.circle(e.offsetX, e.offsetY, 10)
-  const final = new RenderedBody(e.offsetX, e.offsetY, box)
-  bodies.push(final)
+  renderBody(box)
 })
 
 const makeFLoor = () => {
