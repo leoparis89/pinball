@@ -17,7 +17,6 @@ export const makePaddles = (x: number, y: number, rightSide?: boolean) => {
 
   const paddle = Matter.Bodies.trapezoid(x, y, 20, 80, 0.33, {
     label: 'paddle' + (rightSide ? 'Right' : 'Left'),
-
     angle: rightSide ? -1.57 : 1.57,
     chamfer: {},
     collisionFilter: {
@@ -59,28 +58,28 @@ export const makePaddles = (x: number, y: number, rightSide?: boolean) => {
   ])
 }
 
-let isUp = false
-
-document.onkeydown = e => {
-  if (e.code === 'Space') {
-    isUp = true
-    console.log(isUp)
-  }
-}
-
-document.onkeyup = e => {
-  if (e.code === 'Space') {
-    isUp = false
-    console.log(isUp)
-  }
-}
-
 export const makeStopper = (
   x: number,
   y: number,
   active,
   rightSide?: boolean,
 ) => {
+  let isUp = false
+
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.code === (rightSide ? 'Space' : 'ControlLeft')) {
+      isUp = true
+      console.log(isUp)
+    }
+  })
+
+  document.addEventListener('keyup', (e: KeyboardEvent) => {
+    if (e.code === (rightSide ? 'Space' : 'ControlLeft')) {
+      isUp = false
+      console.log(isUp)
+    }
+  })
+
   const c = Matter.Bodies.circle(x, y, 10, {
     isStatic: true,
     render: {
