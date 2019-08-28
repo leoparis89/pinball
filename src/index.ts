@@ -10,7 +10,7 @@ import settings from './settings'
 
 document.getElementById('matter-frame')!.addEventListener('click', e => {
   // const b = new Box(e.offsetX, e.offsetY, 30, 30)
-  const box = Bodies.rectangle(e.offsetX, e.offsetY, 10, 30)
+  const box = Bodies.trapezoid(e.offsetX, e.offsetY, 30, 80, 3)
   renderBody(box)
 })
 
