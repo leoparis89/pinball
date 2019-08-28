@@ -6,12 +6,12 @@ export class RenderedBody {
   image
   body
 
-  constructor(x, y, body) {
+  constructor(body) {
     addToWorld(body)
     this.body = body
 
-    const xOffset = x,
-      yOffset = y
+    const xOffset = body.position.x,
+      yOffset = body.position.y
 
     const vert = this.body.vertices
     const input = vert
@@ -28,7 +28,7 @@ export class RenderedBody {
   refresh() {
     this.image.x = this.body.position.x
     this.image.y = this.body.position.y
-    this.image.angle = radToDeg(this.body.angle) - 90
+    this.image.angle = radToDeg(this.body.angle)
   }
 }
 
@@ -38,5 +38,5 @@ function radToDeg(radians) {
 }
 
 export const renderBody = body => {
-  bodies.push(new RenderedBody(body.position.x, body.position.y, body))
+  bodies.push(new RenderedBody(body))
 }

@@ -10,7 +10,7 @@ import settings from './settings'
 
 document.getElementById('matter-frame')!.addEventListener('click', e => {
   // const b = new Box(e.offsetX, e.offsetY, 30, 30)
-  const box = Bodies.circle(e.offsetX, e.offsetY, 10)
+  const box = Bodies.rectangle(e.offsetX, e.offsetY, 10, 30)
   renderBody(box)
 })
 
