@@ -5,10 +5,15 @@ import { makeImage } from './pixiService'
 export class RenderedBody {
   image
   body
+  initialAngle
 
   constructor(body) {
+    // debugger
+
     addToWorld(body)
     this.body = body
+
+    this.initialAngle = body.angle
 
     const xOffset = body.position.x,
       yOffset = body.position.y
@@ -23,12 +28,13 @@ export class RenderedBody {
       }, [])
 
     this.image = makeImage(input)
+    // this.body.angle = 0
   }
 
   refresh() {
     this.image.x = this.body.position.x
     this.image.y = this.body.position.y
-    this.image.angle = radToDeg(this.body.angle)
+    this.image.angle = radToDeg(this.body.angle - this.initialAngle)
   }
 }
 

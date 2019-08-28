@@ -17,7 +17,8 @@ export const makePaddles = (x: number, y: number, rightSide?: boolean) => {
 
   const paddle = Matter.Bodies.trapezoid(x, y, 20, 80, 0.33, {
     label: 'paddle' + (rightSide ? 'Right' : 'Left'),
-    angle: 1.57,
+
+    angle: rightSide ? -1.57 : 1.57,
     chamfer: {},
     collisionFilter: {
       group: paddleGroup,
@@ -34,14 +35,12 @@ export const makePaddles = (x: number, y: number, rightSide?: boolean) => {
     collisionFilter: {
       group: paddleGroup,
     } as any,
-    render: {
-      // visible: false,
-    },
+    render: {},
   })
 
   const constraint = Matter.Constraint.create({
     bodyA: paddle,
-    pointA: { x: -15, y: 0 },
+    pointA: { x: rightSide ? 15 : -15, y: 0 },
     bodyB: hinge,
     length: 0,
     stiffness: 0,
